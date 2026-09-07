@@ -8,7 +8,7 @@ tools can run it in full.
 
 | Skill | Requirements |
 |-------|--------------|
-| `qt-cpp-review` | Python 3.6+ for the linter script. No external Python packages. |
+| `qt-cpp-review` | Python 3.7+ for the linter script. No external Python packages. |
 | `qt-qml-review` | Python 3.6+ for the linter script. No external Python packages. Optional: `qmllint` from a Qt 6 installation for type checks. |
 | `qt-qml-profiler` | A Qt 6 installation containing `bin/qmlprofiler`. CMake and a C++ toolchain (profiling mode only, to build with `-DQT_QML_DEBUG`). Python 3 for the trace parser. |
 | `qt-qml-test` | Qt 6: the generated tests use unversioned `import QtQuick` and `import QtTest`. Existing QML components to test; the skill does not scaffold a project from nothing. |
@@ -30,6 +30,15 @@ Python linter with parallel subagents. The full workflow runs on
 Claude Code and Codex CLI. GitHub Copilot reads the same skill
 directory, but it cannot run the linter or launch subagents, so
 only the static guidance loads.
+
+`qt-cpp-review` launches deep-analysis agents only for scopes above
+about 2,500 lines. It prefers the dedicated `cpp-review-agent`, which
+the plugin install ships in its `agents/` directory. That directory
+sits outside the skill, so a skill-only copy or symlink does not
+include it. The skill then uses the tool's general-purpose agent and
+passes the same rules in the prompt, so the review works but costs a
+little more. On Claude Code you can add the dedicated agent by
+copying `agents/cpp-review-agent.md` to `~/.claude/agents/`.
 
 The condensed `platforms/windsurf.md` variants (for
 `qt-cpp-review`, `qt-qml-review`, `qt-qml-docs` and `qt-qml`)

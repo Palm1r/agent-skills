@@ -204,7 +204,15 @@ ln -s "$(pwd)/skills/qt-qml-review" ~/.claude/skills/qt-qml-review
 
 # Or copy into a project for team use
 cp -r skills/qt-qml-review .claude/skills/qt-qml-review
+
+# qt-cpp-review only: also install its review agent. The plugin install
+# does this for you; a skill-only copy does not include agents/.
+mkdir -p ~/.claude/agents
+cp agents/cpp-review-agent.md ~/.claude/agents/
 ```
+
+Without the agent, `qt-cpp-review` still works: it falls back to the
+general-purpose agent.
 
 Claude Code auto-discovers skills — no restart needed.
 
