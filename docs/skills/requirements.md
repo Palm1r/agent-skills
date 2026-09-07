@@ -9,7 +9,7 @@ tools can run it in full.
 | Skill | Requirements |
 |-------|--------------|
 | `qt-cpp-review` | Python 3.7+ for the linter script. No external Python packages. |
-| `qt-qml-review` | Python 3.6+ for the linter script. No external Python packages. Optional: `qmllint` from a Qt 6 installation for type checks. |
+| `qt-qml-review` | Python 3.7+ for the linter script. No external Python packages. Optional: `qmllint` from a Qt 6 installation for type checks. |
 | `qt-qml-profiler` | A Qt 6 installation containing `bin/qmlprofiler`. CMake and a C++ toolchain (profiling mode only, to build with `-DQT_QML_DEBUG`). Python 3 for the trace parser. |
 | `qt-qml-test` | Qt 6: the generated tests use unversioned `import QtQuick` and `import QtTest`. Existing QML components to test; the skill does not scaffold a project from nothing. |
 | `qt-qml-test-run` | A Qt 6 installation containing `bin/qmltestrunner`. A CMake-based project (qmake is not supported). CMake 3.21 or newer and a C++ toolchain when building. Python 3 for the JUnit XML parser. |
