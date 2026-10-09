@@ -59,12 +59,19 @@ for the full cross-platform story.
 | Tool | Description |
 |------|-------------|
 | `qt-documentation-mcp` | Hosted MCP server for Qt API documentation lookup across the latest release and active LTS branches. Bundled with the `qt-development-skills` plugin; also available standalone via the official MCP registry as `io.qt/qt-documentation-mcp`. |
+| `qml-live-preview-mcp` | A local MCP server that launches a Qt Quick application and live-previews QML edits in it, without a rebuild. |
 
 ### Qt Documentation MCP Tool
 
 See [`mcp/qt-documentation-mcp/README.md`](mcp/qt-documentation-mcp/README.md)
 for endpoint and manual setup instructions for AI clients other than
 Claude Code.
+
+### QML Live Preview MCP Tool
+
+Read the [`Introducing the QML Live Preview MCP Tool for Agentic Development of Embedded Devices`](https://www.qt.io/blog/introducing-the-qml-live-preview-mcp-tool-for-agentic-development-of-embedded-devices) blog post to gain more information about the QML-Live-Preview-MCP-Server.
+
+See [`mcp/qml-live-preview-mcp/README.md`](mcp/qml-live-preview-mcp/README.md) for endpoint and manual setup instructions.
 
 ## Repository Structure
 
