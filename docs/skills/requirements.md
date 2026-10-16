@@ -31,14 +31,17 @@ Claude Code and Codex CLI. GitHub Copilot reads the same skill
 directory, but it cannot run the linter or launch subagents, so
 only the static guidance loads.
 
-`qt-cpp-review` launches deep-analysis agents only for scopes above
-about 2,500 lines. It prefers the dedicated `cpp-review-agent`, which
-the plugin install ships in its `agents/` directory. That directory
-sits outside the skill, so a skill-only copy or symlink does not
-include it. The skill then uses the tool's general-purpose agent and
-passes the same rules in the prompt, so the review works but costs a
-little more. On Claude Code you can add the dedicated agent by
-copying `agents/cpp-review-agent.md` to `~/.claude/agents/`.
+`qt-cpp-review` and `qt-qml-review` launch deep-analysis agents only
+for scopes above about 2,500 and 1,500 lines respectively; smaller
+scopes are reviewed inline. They prefer the dedicated
+`cpp-review-agent` and `qml-review-agent`, which the plugin install
+ships in its `agents/` directory. That directory sits outside the
+skill, so a skill-only copy or symlink does not include it. The skill
+then uses the tool's general-purpose agent and passes the same rules
+in the prompt, so the review works but costs a little more. On Claude
+Code you can add the dedicated agents by copying
+`agents/cpp-review-agent.md` and `agents/qml-review-agent.md` to
+`~/.claude/agents/`.
 
 The condensed `platforms/windsurf.md` variants (for
 `qt-cpp-review`, `qt-qml-review`, `qt-qml-docs` and `qt-qml`)

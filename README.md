@@ -29,8 +29,8 @@ for the full cross-platform story.
 
 | Skill | Type | Description |
 |-------|------|-------------|
-| `qt-cpp-review` | Review | Deterministic linting + 6 parallel deep-analysis agents for Qt C++ code. Covers model rule compliance, memory ownership, thread safety, correctness, error handling, and performance. |
-| `qt-qml-review` | Review | Deterministic QML linting (47+ rules) + parallel deep-analysis agents for bindings, layout, loaders, delegates, states, and performance. |
+| `qt-cpp-review` | Review | Deterministic linting + deep analysis for Qt C++ code (inline for small scopes, parallel shard agents above about 2,500 lines). Covers model rule compliance, memory ownership, thread safety, correctness, error handling, and performance. |
+| `qt-qml-review` | Review | Deterministic QML linting (48+ rules) + deep analysis (inline for small scopes, parallel shard agents above about 1,500 lines) for bindings, layout, loaders, delegates, states, and performance. |
 | `qt-qml` | Conceptual | QML best practices for writing, reviewing, fixing, and refactoring. Corrects systematic LLM pre-training biases around bindings, scoping, modules, JS interop, and types. |
 | `qt-canvas2d` | Conceptual | Qt Canvas2D (Qt 6.12+, Qt Canvas Painter) best practices for GPU-accelerated imperative 2D drawing in QML — gauges, charts, waveforms, freehand drawing. Corrects LLM confusion with the legacy Qt Quick `Canvas` and HTML5 `<canvas>` APIs |
 | `qt-ui-design` | Conceptual | UI design and audit for Qt/QML, web, and embedded (MPU/MCU) targets. Covers screen layout, navigation, and UX review with platform-aware defaults for geometry, viewing distance, input, and locale. |
@@ -116,9 +116,9 @@ Codex CLI support natively:
 name: qt-qml-review
 description: >-
   Reviews QML source files for correctness, performance, and
-  maintainability. Deterministic linting (47+ rules) plus
-  parallel deep-analysis agents for bindings, layout, loaders,
-  delegates, states, and performance.
+  maintainability. Deterministic linting (48+ rules) plus
+  deep analysis (parallel shard agents for large scopes) for
+  bindings, layout, loaders, delegates, states, and performance.
 license: LicenseRef-Qt-Commercial OR BSD-3-Clause
 compatibility: >-
   Designed for Claude Code, GitHub Copilot, and similar agents.
@@ -178,7 +178,7 @@ creating platform variants.
 Condensed variants and tools that can't run scripts or subagents
 give less thorough results. For example, GitHub Copilot loads only
 the static guidance of the review skills, without the linter or
-the parallel agents. See
+the deep-analysis agents. See
 [Requirements and platform support](docs/skills/requirements.md)
 for per-skill requirements and limits.
 
@@ -205,14 +205,14 @@ ln -s "$(pwd)/skills/qt-qml-review" ~/.claude/skills/qt-qml-review
 # Or copy into a project for team use
 cp -r skills/qt-qml-review .claude/skills/qt-qml-review
 
-# qt-cpp-review only: also install its review agent. The plugin install
-# does this for you; a skill-only copy does not include agents/.
+# Review skills only: also install their review agents. The plugin
+# install does this for you; a skill-only copy does not include agents/.
 mkdir -p ~/.claude/agents
-cp agents/cpp-review-agent.md ~/.claude/agents/
+cp agents/cpp-review-agent.md agents/qml-review-agent.md ~/.claude/agents/
 ```
 
-Without the agent, `qt-cpp-review` still works: it falls back to the
-general-purpose agent.
+Without the agents, `qt-cpp-review` and `qt-qml-review` still work:
+they fall back to the general-purpose agent.
 
 Claude Code auto-discovers skills — no restart needed.
 
